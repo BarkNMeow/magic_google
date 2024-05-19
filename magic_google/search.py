@@ -8,7 +8,7 @@ import random
 import sys
 import time
 
-import cchardet
+from cchardet import detect
 import requests
 
 from pyquery import PyQuery as pq
@@ -149,7 +149,7 @@ class MagicGoogle:
                 timeout=30,
             )
             content = r.content
-            charset = cchardet.detect(content)
+            charset = detect(content)
             text = content.decode(charset["encoding"])
             self.logger.info(url)
             return text
